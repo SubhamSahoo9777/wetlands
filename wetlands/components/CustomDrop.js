@@ -1,61 +1,48 @@
-import React, { useState } from 'react';
-import { View, Button, StyleSheet, Text, Platform, TextInput } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import VectorIcon from './VectorIcon';
+import React, { useState } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { Dropdown as RNEDropdown } from "react-native-element-dropdown";
 
-export const CustomDrop = ({ label, style, onDateChange }) => {
-  const [date, setDate] = useState(new Date());
-  const [show, setShow] = useState(false);
+export const Dropdown1 = ({ label, data, onSelect, placeholder }) => {
+  const [selectedValue, setSelectedValue] = useState(null);
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(false);
-    setDate(currentDate);
-    if (onDateChange) {
-      onDateChange(currentDate);
+  const handleSelect = (item) => {
+    setSelectedValue(item.value);
+    if (onSelect) {
+      onSelect(item.value);
     }
   };
 
-  const showDatepicker = () => {
-    setShow(true);
-  };
-
-  if (Platform.OS !== 'android') {
-    return null; // Render nothing if the platform is not Android
-  }
-
   return (
-<View style={{minHeight:40,}}>
-<View style={{borderWidth:1,flexDirection:"row",margin:10,borderRadius:10,padding:5}}>
-  {/* <Button onPress={showDatepicker} title={date.toLocaleDateString()} /> */}
-<TextInput
-value={date.toLocaleDateString()}
- placeholder='- -/- -/- - - -'
- style={{paddingLeft:10,width:"85%"}}
- />
- <VectorIcon onPress={showDatepicker} type="FontAwesome" name="calendar" size={24} color="black" style={{flex:1,justifyContent: 'center',alignItems: 'center',}}/>
-</View>
- {show && (
-   <DateTimePicker
-     value={date}
-     mode="date"
-     display="default"
-     onChange={onChange}
-   />
- )}
-</View>
- 
+    <View style={styles.container}>
+      {label && <Text style={styles.label}>{label}</Text>}
+      <RNEDropdown
+        style={styles.dropdown}
+        data={data}
+        labelField="label"
+        valueField="value"
+        placeholder={placeholder || "Select an option"}
+        value={selectedValue}
+        onChange={handleSelect}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
+    marginBottom: 20,
+    marginHorizontal: 10,
   },
   label: {
-    marginBottom: 5,
     fontSize: 16,
+    marginBottom: 5,
+    marginLeft: 5,
+  },
+  dropdown: {
+    minHeight: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 8,
   },
 });
-
-export default CustomDrop;
