@@ -3,7 +3,7 @@ import { View, Button, StyleSheet, Text, Platform, TextInput } from 'react-nativ
 import DateTimePicker from '@react-native-community/datetimepicker';
 import VectorIcon from './VectorIcon';
 
-export const CustomDrop = ({ label, style, onDateChange }) => {
+export const CustomDate1 = ({onDateChange,title }) => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
@@ -25,9 +25,9 @@ export const CustomDrop = ({ label, style, onDateChange }) => {
   }
 
   return (
-<View style={{minHeight:40,}}>
-<View style={{borderWidth:1,flexDirection:"row",margin:10,borderRadius:10,padding:5}}>
-  {/* <Button onPress={showDatepicker} title={date.toLocaleDateString()} /> */}
+<View style={{minHeight:40,marginTop:10,}}>
+    <Text style={{marginLeft: 13,marginBottom:5,fontSize:15,fontWeight:"500"}}>{title}</Text>
+<View style={{borderWidth:1,flexDirection:"row",marginHorizontal:10,borderRadius:10,padding:5}}>
 <TextInput
 value={date.toLocaleDateString()}
  placeholder='- -/- -/- - - -'
@@ -58,4 +58,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomDrop;

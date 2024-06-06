@@ -13,6 +13,7 @@ import {
   MaterialIcons,
   Entypo,
   Feather,
+  EvilIcons
 } from "@expo/vector-icons";
 
 const VectorIcon = (props) => {
@@ -56,7 +57,10 @@ const VectorIcon = (props) => {
         />
       ) : type === "Fontisto" ? (
         <Fontisto name={name} size={size} color={color} onPress={onPress} />
-      ) : type === "AntDesign" ? (
+      ) : type === "EvilIcons" ? (
+        <EvilIcons name={name} size={size} color={color} onPress={onPress} />
+      ) 
+      : type === "AntDesign" ? (
         <AntDesign name={name} size={size} color={color} onPress={onPress} />
       ) : (
         console.warn("prope type not found")

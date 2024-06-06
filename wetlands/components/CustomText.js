@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { TextInput, StyleSheet, View} from 'react-native';
+import { TextInput, StyleSheet, View, Text} from 'react-native';
 import VectorIcon from './VectorIcon';
-export const TextInput1 = ({ style,type="password",width="auto", ...rest }) => {
-    const [hide,setHide]=useState(false)
+export const TextInput1 = ({ style,type="password",width="auto",title, ...rest }) => {
+    const [hide,setHide]=useState(true)
     const toggleHide=()=>{
         setHide(!hide)
     }
@@ -22,7 +22,7 @@ export const TextInput1 = ({ style,type="password",width="auto", ...rest }) => {
         <View style={{width:width,borderWidth:1,padding:1,margin:10,borderRadius:10,flexDirection:"row"}}>
         <TextInput
           style={[styles.input,{width:"85%"}, style]}
-          secureTextEntry={!hide}
+          secureTextEntry={hide}
           placeholder='Enter Password'
           {...rest}
         />
@@ -36,13 +36,16 @@ export const TextInput1 = ({ style,type="password",width="auto", ...rest }) => {
   }
 
     return (
-        <View style={{width:width,borderWidth:1,padding:1,margin:10,borderRadius:10}}>
+      <View style={{marginTop: 10,}}>
+      <Text style={{marginLeft: 13,marginBottom:5,fontSize:15,fontWeight:"500"}}>{title}</Text>
+        <View style={{width:width,borderWidth:1,padding:1,marginHorizontal:10,borderRadius:10}}>
         <TextInput
           style={[styles.input, style]}
           placeholder='Enter your name'
           {...rest}
         />
         </View>
+      </View>
       );
  
 };

@@ -1,18 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { TextInput1 } from '../components/CustomText'
 import { CustomDrop } from '../components/CustomDrop'
+import Header from '../components/Header'
+import Layout from '../components/Layout'
 
-const Home = ({navigation}) => {
-    const [selectedDate, setSelectedDate] = useState(new Date());
+const Home = () => {
   return (
-    <View style={{flex:1,justifyContent:"center"}}>
-     <TextInput1/>
-     <CustomDrop
-      label="Select Date"
-      onDateChange={setSelectedDate}
-     />
-    </View>
+    <>
+<Layout 
+title="Home"
+headerContent="WETLAND MONITORING SITE DATA SHEET(WMSDS)"
+>
+<TextInput1/>
+</Layout>
+    </>
   )
 }
 
