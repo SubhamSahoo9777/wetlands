@@ -16,14 +16,51 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} options={{headerShown:false}} />
-        <Stack.Screen name="General" component={General} options={{headerShown:false}} />
-        <Stack.Screen name="Wi" component={Wi} options={{headerShown:false}} />
-        <Stack.Screen name="Msi" component={Msi} options={{headerShown:false}} />
-        <Stack.Screen name="Wtams" component={Wtams} options={{headerShown:false}} />
-        <Stack.Screen name="Sams" component={Sams} options={{headerShown:false}} />
-        <Stack.Screen name="Wqams" component={Wqams} options={{headerShown:false}} />
-        <Stack.Screen name="Efams" component={Efams} options={{headerShown:false}} />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="General"
+          component={General}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Wi"
+          component={Wi}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Msi"
+          component={Msi}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Wtams"
+          component={Wtams}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Sams"
+          component={Sams}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Wqams"
+          component={Wqams}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Efams"
+          component={Efams}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

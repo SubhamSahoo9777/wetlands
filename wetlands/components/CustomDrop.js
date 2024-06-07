@@ -30,8 +30,9 @@ export const Dropdown1 = ({ label, data, onSelect, placeholder }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 20,
+    // marginBottom: 20,
     marginHorizontal: 10,
+    marginTop: 10,
   },
   label: {
     fontSize: 16,
