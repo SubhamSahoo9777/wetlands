@@ -11,8 +11,10 @@ import VectorIcon from "./VectorIcon";
 import * as Animatable from "react-native-animatable";
 import { RotateIcon } from "./CustomAnimations";
 import { HamburgerModal } from "./Modals";
+import { useNavigation } from "@react-navigation/native";
 const Header = ({ title, headerContent }) => {
   const [rotate, setRotate] = useState(false);
+  const navigation=useNavigation()
   const rotateToggle = () => {
     setRotate(!rotate);
   };
@@ -50,14 +52,8 @@ const Header = ({ title, headerContent }) => {
                   type="AntDesign"
                   name="leftcircle"
                   size={25}
-                  color="#021626"
-                />
-                <VectorIcon
-                  type="AntDesign"
-                  name="rightcircle"
-                  size={25}
-                  color="#021626"
-                  style={{ marginLeft: 15 }}
+                  color="green"
+                  onPress={()=>navigation.goBack()}
                 />
               </>
             )}

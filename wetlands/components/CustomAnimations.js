@@ -18,7 +18,36 @@ export const RotateIcon = ({icon,control}) => {
   </Animatable.View>
   )
 }
-
+export const TextAnimation = ({ text = "RUWAS", imageLogoStyle }) => {
+  return (
+    <View style={{}}>
+      <Animatable.View
+        style={[
+          {
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: 10,
+          },
+          imageLogoStyle,
+        ]}
+      >
+        {[...text].map((letter, index) => (
+          <Animatable.Text
+            key={index}
+            animation={index == 0 ? "slideInLeft" : "slideInRight"}
+            iterationCount={1}
+            duration={2000 + index * 300}
+            easing={"ease"}
+            style={{ color: "#fff", fontSize: 25 }}
+          >
+            {letter}
+          </Animatable.Text>
+        ))}
+      </Animatable.View>
+    </View>
+  );
+};
 
 
 const styles = StyleSheet.create({})

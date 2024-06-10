@@ -3,6 +3,7 @@ import { TextInput, StyleSheet, View, Text } from "react-native";
 import VectorIcon from "./VectorIcon";
 export const TextInput1 = ({
   style,
+  style1,
   type = "password",
   width = "auto",
   title,
@@ -15,17 +16,19 @@ export const TextInput1 = ({
   if (type == "email") {
     return (
       <View
-        style={{
+        style={[{
           width: width,
           borderWidth: 1,
           padding: 1,
           margin: 10,
           borderRadius: 10,
-        }}
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        },style1]}
       >
         <TextInput
-          style={[styles.input, style]}
+          style={[styles.input,{fontSize:16,color:"#6eb9f7",fontWeight:"500",}, style]}
           placeholder="Enter Email"
+          placeholderTextColor="rgba(255, 255, 255, 0.7)"
           {...rest}
         />
       </View>
@@ -34,18 +37,20 @@ export const TextInput1 = ({
   if (type == "password") {
     return (
       <View
-        style={{
+        style={[{
           width: width,
           borderWidth: 1,
           padding: 1,
           margin: 10,
           borderRadius: 10,
           flexDirection: "row",
-        }}
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        },style1]}
       >
         <TextInput
-          style={[styles.input, { width: "85%" }, style]}
+          style={[styles.input, { width: "85%",fontSize:16,color:"#6eb9f7",fontWeight:"500" ,}, style]}
           secureTextEntry={hide}
+          placeholderTextColor="rgba(255, 255, 255, 0.7)"
           placeholder="Enter Password"
           {...rest}
         />
@@ -55,13 +60,13 @@ export const TextInput1 = ({
             type="Ionicons"
             name="eye"
             size={24}
-            color="black"
-            style={{
+            color="#FFC485"
+            style={[{
               justifyContent: "center",
               alignItems: "center",
               flex: 1,
               minHeight: 40,
-            }}
+            },]}
           />
         ) : (
           <VectorIcon
@@ -69,7 +74,7 @@ export const TextInput1 = ({
             type="Ionicons"
             name="eye-off"
             size={24}
-            color="black"
+            color="#FFC485"
             style={{
               justifyContent: "center",
               alignItems: "center",
@@ -105,7 +110,7 @@ export const TextInput1 = ({
       >
         <TextInput
           style={[styles.input, style]}
-          placeholder="Enter your name"
+          placeholder={`Enter ${title}`}
           {...rest}
         />
       </View>

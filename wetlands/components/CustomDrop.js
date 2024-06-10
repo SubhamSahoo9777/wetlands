@@ -21,6 +21,7 @@ export const Dropdown1 = ({ label, data, onSelect, placeholder }) => {
         labelField="label"
         valueField="value"
         placeholder={placeholder || "Select an option"}
+        placeholderStyle={{color:"gray"}}
         value={selectedValue}
         onChange={handleSelect}
       />

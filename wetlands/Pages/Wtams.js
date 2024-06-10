@@ -1,47 +1,77 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import { FlatList, StyleSheet, View, Alert } from "react-native";
+import React, { useContext, useState } from "react";
 import Layout from "../components/Layout";
 import { Dropdown1 } from "../components/CustomDrop";
 import { CustomButton1 } from "../components/CustomButtons";
+import MyContext from "../ContextApi/CreateContext";
 
 const Wtams = () => {
+  const {setContextData}=useContext(MyContext)
   const [data, setData] = useState([
-    { title: "Swamp Forest" },
-    { title: "Srub land" },
-    { title: "Bushland/Palms" },
-    { title: "Permanent" },
-    { title: "Reeds/sedges" },
-    { title: "Natural Grassland" },
-    { title: "Converted to Formland" },
-    { title: "Open water" },
-    { title: "Wood land" },
+    "Swamp Forest",
+    "Srub land",
+    "Bushland/Palms",
+    "Permanent",
+    "Reeds/sedges",
+    "Natural Grassland",
+    "Converted to Formland",
+    "Open water",
+    "Wood land",
   ]);
+
   const dropdownData = [
-    { label: "Option 1", value: "option1" },
-    { label: "Option 2", value: "option2" },
-    { label: "Option 3", value: "option3" },
+    { label: "Present", value: "Present" },
+    { label: "Not Present", value: "Not Present" },
+    { label: "Don't Know", value: "Don't Know" },
   ];
+
+  const [response, setResponse] = useState({});
+
+  const handleSelect = (item, value) => {
+    setResponse((prevState) => ({
+      ...prevState,
+      [item.replaceAll(" ", "_")]: value,
+    }));
+  };
+
+  const validateFields = () => {
+    for (const item of data) {
+      let key = item.replaceAll(" ", "_");
+      if (!response[key]) {
+        alert(`Please select an option for ${item}`);
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const handleSave = () => {
+    if (validateFields()) {
+      const temp = {
+        wetlandTypeAtMonitoringSite: response,
+      };
+      setContextData(prev => ({ ...prev, ...temp }));
+    }
+  };
 
   return (
     <Layout title={"WTAMS"} headerContent="Wetland Type At Monitoring Site">
-      <FlatList
-        contentContainerStyle={{ paddingBottom: 20 }}
-        data={data}
-        renderItem={({ item, index }) => (
-          <Dropdown1
-            label={item.title}
-            data={dropdownData}
-            //  onSelect={handleSelect}
-            placeholder={item.title}
-          />
-        )}
-      />
-      <CustomButton1
-        title="Save"
-        animation="pulse"
-        duration={1000}
-        style={{ marginBottom: 15 }}
-      />
+      <View style={{ flex: 1 }}>
+        <FlatList
+          contentContainerStyle={{ paddingBottom: 20 }}
+          data={data}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => (
+            <Dropdown1
+              label={item}
+              data={dropdownData}
+              onSelect={(value) => handleSelect(item, value)}
+              placeholder={item}
+            />
+          )}
+        />
+        <CustomButton1 title="Save" onPress={handleSave} />
+      </View>
     </Layout>
   );
 };

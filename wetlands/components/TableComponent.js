@@ -3,12 +3,26 @@ import React, { useState } from "react";
 import CustomRadio from "./CustomRadio";
 import { TextInput1 } from "./CustomText";
 
-const TableComponent = ({ title = "Floating", setData }) => {
+const TableComponent = ({ title = "Floating", setData, singleData, ind }) => {
   const [select, setSelect] = useState("no");
+
   const onSelect = (item) => {
-    console.log(item);
+    setData((prev) => {
+      const newData = [...prev];
+      newData[ind] = { ...singleData, status: item };
+      return newData;
+    });
     setSelect(item);
   };
+
+  const handleText = (t) => {
+    setData((prev) => {
+      const newData = [...prev];
+      newData[ind] = { ...singleData, comment: t };
+      return newData;
+    });
+  };
+
   return (
     <View style={{ marginHorizontal: 10, marginTop: 10 }}>
       <View
@@ -33,7 +47,7 @@ const TableComponent = ({ title = "Floating", setData }) => {
           <CustomRadio onSelect={onSelect} />
         </View>
       </View>
-      {select == "Yes" && <TextInput1 type={""} title="Significant Species" />}
+      {select == "Yes" && <TextInput1 type={""} title="Significant Species" onChangeText={(t) => handleText(t)} />}
     </View>
   );
 };
